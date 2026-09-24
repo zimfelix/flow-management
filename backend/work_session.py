@@ -10,7 +10,6 @@ from backend.time_period import BreakPeriod, WorkPeriod
 
 
 class WorkSession:
-
     def __init__(self, start_time: datetime) -> None:
         first_work_period = WorkPeriod(start_time)
 

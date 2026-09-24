@@ -59,7 +59,9 @@ def test_buttons_record_work_break_resume_and_end_with_visible_times(app):
     window.end_button.click()
     assert window.status.text() == "Keine aktive Session"
     assert window.start_button.isEnabled()
-    assert window.entries.item(0).text() == "Session: 2026-07-20 09:00 → 2026-07-20 17:00"
+    assert (
+        window.entries.item(0).text() == "Session: 2026-07-20 09:00 → 2026-07-20 17:00"
+    )
     assert window.entries.item(3).text() == "  Arbeit: 10:15 → 17:00"
 
     window.close()
@@ -92,12 +94,16 @@ def test_invalid_time_keeps_work_running_and_displays_domain_error(app):
         clock_at(datetime(2026, 7, 20, 9), datetime(2026, 7, 20, 8, 59))
     )
     window.start_button.click()
-    before = [window.entries.item(index).text() for index in range(window.entries.count())]
+    before = [
+        window.entries.item(index).text() for index in range(window.entries.count())
+    ]
     window.break_button.click()
 
     assert window.status.text() == "Arbeit läuft"
     assert window.error.text() == "End time cannot be before start time"
-    assert [window.entries.item(index).text() for index in range(window.entries.count())] == before
+    assert [
+        window.entries.item(index).text() for index in range(window.entries.count())
+    ] == before
     assert window.break_button.isEnabled()
 
     window.close()
