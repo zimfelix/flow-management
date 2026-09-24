@@ -1,8 +1,10 @@
 # Projektprofil – aktive Grenzen, Werkzeuge, Befehle
 
+> **Status:** Pending Project Init – der erste Desktop-Prototyp und sein pytest-Gate existieren; Zielarchitektur, Ist-zu-Ziel-Abgleich und nächste Refactor-Grenze sind für die weitere Implementierung noch nicht bestätigt.
+
 **Zuständigkeit:** Bestätigte Projektgrenzen und Einstieg in tatsächlich geltende Werkzeuge und Prüfungen. Architektur, Code- und Testkonventionen stehen unter `agentic-harness/docs/`.
 
-> **Herkunft:** Quellstand `3c936a1` enthielt ein leeres Profil mit `Pending Project Init`. In der ersten Integration `b80b873` wurden Lernmodus und damals bekannte Domänenfakten eingetragen; der Init-Status blieb offen. Neu im Project-Init-Schritt: eigener Desktop-Anwendungsfall, Grenzen des Prototyps, PySide6 und geprüfter Test-Einstieg. Vergleich: `agentic-harness/harness/adoption-log.md`.
+> **Herkunft:** Quellstand `3c936a1` enthielt ein leeres Profil mit `Pending Project Init`. `b80b873` ergänzte Domänenfakten, `2bfac53` Desktop-Prototyp und pytest-Gate. Dieser Schritt kennzeichnet den noch fehlenden Ziel-/Ist-Abgleich; siehe `agentic-harness/harness/adoption-log.md`.
 
 ## Produkt und Grenzen
 
@@ -15,7 +17,8 @@
 
 - **Bekannt:** Python-Domäne in `backend/`, Desktop-UI in `frontend/desktop_ui.py` mit PySide6 (`requirements.txt`), Einstieg `main.py`; Terminal-UI ist leer. `FlowManager` hat noch keine Koordinationsfunktion. Details unter `agentic-harness/docs/architecture.md`.
 - **Umgebung:** Python 3.14.7 und `pytest` in der lokalen `.venv` verwendet. Dies legt keine unterstützte Mindestversion fest. Einrichtung: `python3 -m venv .venv && .venv/bin/python -m pip install -r requirements.txt -r requirements-dev.txt`. Start: `.venv/bin/python main.py` in einer Desktop-Session; interaktiver Start noch nicht manuell visuell geprüft.
-- **Offen:** Unterstützte Python-Version und Zielplattformen jenseits der aktuellen macOS-Umgebung. Keine weiteren Integrationen für das MVP.
+- **Offen:** Unterstützte Python-Version und Zielplattformen jenseits der aktuellen macOS-Umgebung. Keine weiteren Integrationen für den aktuellen Prototyp.
+- **Vor der nächsten Produktfunktion:** Zielarchitektur und Code-Abstand unter `agentic-harness/docs/architecture.md` durchgehen; entscheiden, welche Koordination außerhalb des Widgets nötig ist und welcher kleinste verhaltensgleiche Refactor zuerst ansteht. Werkzeugkandidaten und aktiven Qualitätsstandard unter `agentic-harness/docs/code.md` unterscheiden. Der dokumentierte erste Vorschlag ist noch kein umgesetzter Refactor und keine bestätigte Stack-Entscheidung.
 
 ## Daten und Freigaben
 
@@ -26,7 +29,7 @@
 - **Gate-Befehl (Domäne und Desktop-Adapter, headless):** `QT_QPA_PLATFORM=offscreen .venv/bin/python -m pytest -q`. In der eingerichteten Umgebung: 23 bestanden. Qt-offscreen prüft Widget-Verhalten, nicht die visuelle Erscheinung auf einem Bildschirm.
 - **Fehlersensitivität geprüft:** Ein temporärer pytest-Test außerhalb des Repos mit `assert False` führte wie erwartet zu Exit-Code 1; die Datei wurde anschließend entfernt. Dies belegt die Fehlererkennung des Test-Einstiegs, nicht jedes Akzeptanzkriterium. Ein Qt-offscreen-Smoke-Test zeigte das Fenster und beendete den Event-Loop mit Exit-Code 0.
 - **Offen:** Interaktive Sichtprüfung auf einem Desktop und weitere Evidenz für das erste Produkt-Spec. Kein `Implemented` ohne Nachweise für alle AK und erforderliche Checks.
-- **Testpraxis:** `agentic-harness/docs/testing.md`; Codekonventionen: `agentic-harness/docs/code.md`.
+- **Testpraxis:** `agentic-harness/docs/testing.md`; Codekonventionen und noch nicht aktive Werkzeugkandidaten: `agentic-harness/docs/code.md`. Ruff, Typcheck und CI gehören derzeit **nicht** zum Gate. Zusätzliche Checks erst nach Einrichtung, positiver und sinnvoll negativer Prüfung eintragen.
 
 ## Kontextpflege
 
