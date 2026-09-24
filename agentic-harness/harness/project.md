@@ -1,28 +1,32 @@
 # Projektprofil – aktive Grenzen, Werkzeuge, Befehle
 
-> **Status:** Pending Project Init – erster Nutzerablauf, Grenzen und Prüf-Einstieg sind noch nicht vollständig geklärt. Vorgehen: `agentic-harness/harness/init.md`.
+**Zuständigkeit:** Bestätigte Projektgrenzen und Einstieg in tatsächlich geltende Werkzeuge und Prüfungen. Architektur, Code- und Testkonventionen stehen unter `agentic-harness/docs/`.
 
-**Zuständigkeit:** Bestätigte Projektgrenzen und Einstieg in die tatsächlich geltenden Werkzeuge und Prüfungen. Architektur, Code- und Testkonventionen stehen unter `agentic-harness/docs/`.
+> **Herkunft:** Quellstand `3c936a1` enthielt ein leeres Profil mit `Pending Project Init`. In der ersten Integration `b80b873` wurden Lernmodus und damals bekannte Domänenfakten eingetragen; der Init-Status blieb offen. Neu im Project-Init-Schritt: eigener Desktop-Anwendungsfall, Grenzen des Prototyps, PySide6 und geprüfter Test-Einstieg. Vergleich: `agentic-harness/harness/adoption-log.md`.
 
 ## Produkt und Grenzen
 
-- **Bekannt:** Laut `README.md` Lernprojekt für eine lokale Anwendung zur Erfassung von Arbeitszeit in Work Days, Sessions und Pausen. Domänenlogik vor Oberfläche und Persistenz; Terminal-UI vor Desktop-UI; SQLite erst nach stabilem In-Memory-Ablauf. `README.md` beschreibt Richtung, nicht vollständig implementiertes Verhalten.
-- **Offen:** Nutzer, konkreter erster Ablauf, MVP und Nicht-Ziele.
+- **Bekannt:** Felix nutzt die lokale Desktop-Anwendung selbst, um Arbeitszeiten mit Start-, Pausen-, Fortsetzen- und Ende-Aktionen zu erfassen und sichtbare Zeitpunkte nachzusehen. Die erste Oberfläche ist Desktop mit Buttons, nicht Terminal. Sie erfasst Zeitpunkte beim Klicken, auch wenn das Fenster zwischendurch nicht im Fokus ist, solange die Anwendung läuft.
+- **Grenze des ersten Prototyps (nicht als vollständiger MVP bestätigt):** Noch keine Persistenz über Neustarts, automatische Erkennung von Computeraktivität, OS-Autostart, Tray-Funktion, nachträgliche Korrekturen oder Auswertung. Als erste Daten sind erfundene Testdaten zulässig; keine echten Nutzerdaten oder externen Schreibzugriffe erforderlich. Ob und welche Hintergrundfunktionen zur bedienungsfertigen Ziel-App gehören, bleibt zu klären.
+- **Später relevant:** SQL-Persistenz (SQLite oder andere Lösung), Browser- und Data-Science-Auswertung. Die genauen Anforderungen an Hintergrundbetrieb, Mitternacht und Zeitzonen bleiben offen und werden nicht als heutiges Verhalten behauptet.
 - **Lernmodus:** Ein extern sichtbares Domänenverhalten nach dem anderen. Bei einer Feature-Idee zuerst Auslöser und sichtbare Änderung beschreiben; vor Umsetzung Eingaben, gelesenen und veränderten Zustand, ungültige Fälle und Invarianten klären. Materiell unterschiedliche Lösungen mit Trade-offs und einer verhältnismäßigen Empfehlung vorstellen. Felix liefert für neues Kernverhalten das fachliche Modell; der Agent kann Boilerplate oder die vereinbarte Umsetzung übernehmen. Nach der Umsetzung das Verständnis mit einem angemessenen aktiven Check prüfen, ohne Routinearbeit zum Quiz zu machen.
 
 ## Technik und Betrieb
 
-- **Bekannt:** Python-Quellcode in `backend/`, leere Einstiegspunkte in `frontend/` und `main.py`; `pytest` ist in `requirements-dev.txt` aufgeführt. Aktueller Aufbau und geplante Grenzen: `agentic-harness/docs/architecture.md`.
-- **Offen:** Python-Version, ausführbarer Startbefehl, weitere Integrationen und Betriebsform. Ein produktiver Anwendungsablauf ist noch nicht implementiert.
+- **Bekannt:** Python-Domäne in `backend/`, Desktop-UI in `frontend/desktop_ui.py` mit PySide6 (`requirements.txt`), Einstieg `main.py`; Terminal-UI ist leer. `FlowManager` hat noch keine Koordinationsfunktion. Details unter `agentic-harness/docs/architecture.md`.
+- **Umgebung:** Python 3.14.7 und `pytest` in der lokalen `.venv` verwendet. Dies legt keine unterstützte Mindestversion fest. Einrichtung: `python3 -m venv .venv && .venv/bin/python -m pip install -r requirements.txt -r requirements-dev.txt`. Start: `.venv/bin/python main.py` in einer Desktop-Session; interaktiver Start noch nicht manuell visuell geprüft.
+- **Offen:** Unterstützte Python-Version und Zielplattformen jenseits der aktuellen macOS-Umgebung. Keine weiteren Integrationen für das MVP.
 
 ## Daten und Freigaben
 
-- **Offen:** Echte Daten, Secrets, Berechtigungen sowie externe Schreibaktionen. Vor riskanten externen Änderungen gesondert klären; aus „lokal“ keine Freigabe ableiten.
+- **Bekannt:** Das erste MVP hält Zeitpunkte nur im laufenden Prozess; bei Beenden gehen sie verloren. Keine Secrets, externen Dienste, Zugriffsrechte oder externen Schreibaktionen für diesen Ablauf nötig. Zukünftige Speicherung und Umgang mit echten Daten erst vor ihrer Einführung klären.
 
 ## Prüf-Einstieg
 
-- **Bekannt:** Bestehende Tests unter `tests/` für Teile der Domäne; `tests/test_break_period.py` ist leer. Projektpraxis unter `agentic-harness/docs/testing.md`, Codekonventionen unter `agentic-harness/docs/code.md`.
-- **Offen:** Ausführbaren Prüf-Befehl, vollen Suite-Erfolg und absichtlich fehlschlagenden Check noch prüfen und erst dann als Gate eintragen. Kein `Implemented` aus der bloßen Anwesenheit von Tests ableiten.
+- **Gate-Befehl (Domäne und Desktop-Adapter, headless):** `QT_QPA_PLATFORM=offscreen .venv/bin/python -m pytest -q`. In der eingerichteten Umgebung: 23 bestanden. Qt-offscreen prüft Widget-Verhalten, nicht die visuelle Erscheinung auf einem Bildschirm.
+- **Fehlersensitivität geprüft:** Ein temporärer pytest-Test außerhalb des Repos mit `assert False` führte wie erwartet zu Exit-Code 1; die Datei wurde anschließend entfernt. Dies belegt die Fehlererkennung des Test-Einstiegs, nicht jedes Akzeptanzkriterium. Ein Qt-offscreen-Smoke-Test zeigte das Fenster und beendete den Event-Loop mit Exit-Code 0.
+- **Offen:** Interaktive Sichtprüfung auf einem Desktop und weitere Evidenz für das erste Produkt-Spec. Kein `Implemented` ohne Nachweise für alle AK und erforderliche Checks.
+- **Testpraxis:** `agentic-harness/docs/testing.md`; Codekonventionen: `agentic-harness/docs/code.md`.
 
 ## Kontextpflege
 

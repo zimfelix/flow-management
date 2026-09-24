@@ -2,6 +2,8 @@
 
 > **Zuständigkeit:** Ein gemeinsamer Arbeitsablauf; keine Produktfakten, Testbefehle oder zweite Kopie des Gates.
 
+> **Herkunft:** Schritte 1–5 und die ersten vier Regeln unter „Markdown-Dateien pflegen“ wurden aus dem Quellstand `3c936a1` unverändert in `b80b873` übernommen. Neu in diesem Project-Init-Schritt: dieser Hinweis und die letzte Regel zur Markdown-Provenienz. Vergleich: `agentic-harness/harness/adoption-log.md`.
+
 1. Ordne die Aufgabe und das betroffene Projekt ein. Lies `agentic-harness/harness/project.md`; solange dort `Pending Project Init` steht, nutze vor der ersten Produktimplementierung `agentic-harness/harness/init.md`. Erfinde keine Projektfakten.
 2. Kläre Ziel und Umfang. Ein größeres, offenes Vorhaben kann zuerst als Idea unter `agentic-harness/ideas/` geklärt werden; erst Bestätigung **und** Umsetzungsauftrag führen zu Specs. Für beauftragtes neues oder geändertes Nutzerverhalten erstelle beziehungsweise aktualisiere eine Spec unter `agentic-harness/specs/`. Ein verhaltensgleicher Refactor oder eine reine Dokuänderung braucht nicht automatisch eine neue Produktspec.
 3. Lies nur die relevanten, bereits geltenden Dateien aus `agentic-harness/docs/`. Kläre Berechtigungen, echte Daten und irreversible Aktionen vor ihrer Ausführung. Setze die kleinste passende Änderung um; bei neuem Umfang prüfe betroffene Specs und Projektgrenzen erneut.
@@ -14,3 +16,4 @@
 - Schreibe konkrete, handlungsrelevante Regeln oder bestätigte Fakten in kurzen Absätzen und Listen: **wann** gilt etwas, **was** ist zu tun und, falls nötig, **woran** wird es geprüft? Unbekanntes ausdrücklich offen lassen.
 - Eine Aussage hat einen zuständigen Ort: Arbeitsablauf im Harness, Projektgrenzen in `agentic-harness/harness/project.md`, thematische Konventionen in `agentic-harness/docs/`, beauftragtes Verhalten in `agentic-harness/specs/`. Anderswo verlinken statt wiederholen.
 - Keine starre Zeilen- oder Wortgrenze: Kürze Inhalte ohne Entscheidungswert. Trenne erst bei einem eigenständigen, wiederkehrenden Thema in eine neue Datei und verlinke sie am passenden Einstieg. Entferne Platzhalter-Status beim Befüllen.
+- In diesem Harness-Lernprojekt bei künftigen Markdown-Änderungen einen kurzen Provenienz-Hinweis in der bearbeiteten Datei und die Übersicht `agentic-harness/harness/adoption-log.md` pflegen. Unbearbeitete Markdown-Dateien nicht allein zur Markierung ändern; Details bleiben über Git-Diffs nachprüfbar.

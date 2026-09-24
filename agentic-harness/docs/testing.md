@@ -2,7 +2,9 @@
 
 **Zuständigkeit:** Project-specific testing responsibilities, test levels, workflow, and correction rules. The completion gate is defined in `agentic-harness/harness/verification/gate.md`; executable check commands belong in `agentic-harness/harness/project.md`.
 
-Detailed feature behavior belongs in agreed requirements, production code and tests, not in this document. Existing pytest tests cover periods, sessions and work days; `tests/test_break_period.py` is currently empty.
+> **Herkunft:** Quellstand `3c936a1` enthielt hier nur einen Testing-Platzhalter. In `b80b873` ersetzte ihn der schon vorher vorhandene projektbezogene Test-Workflow aus `docs/testing.md`; die Domänentests bestanden ebenfalls bereits. Neu im Project-Init-Schritt: Desktop-Interaktion als aktives Testniveau und Qt-offscreen-Testausführung. Vergleich: `agentic-harness/harness/adoption-log.md`.
+
+Detailed feature behavior belongs in agreed requirements, production code and tests, not in this document. Existing pytest tests cover periods, sessions and work days; `tests/test_break_period.py` is currently empty. `tests/test_desktop_ui.py` checks the new widget workflow with a deterministic clock and Qt's offscreen platform.
 
 ## Responsibilities
 
@@ -70,13 +72,13 @@ Use selectively when several stable operations must cooperate, for example start
 
 ### Level 3: Adapter integration
 
-Introduce when terminal UI or SQLite adapters exist. Test that an adapter calls the domain correctly or that persistence stores and restores the required state. Prefer a real temporary SQLite database over extensive persistence mocks.
+Active for the desktop UI: test button clicks, observable widget state and domain interaction with an injected clock, using `QT_QPA_PLATFORM=offscreen` for headless runs. When terminal or SQLite adapters exist, test that they call the domain correctly or that persistence stores and restores the required state. Prefer a real temporary SQLite database over extensive persistence mocks.
 
 ### Level 4: End-to-end workflow
 
 Introduce only when the interfaces and persistence workflow are stable. Exercise a complete user workflow through the real application boundary. Keep these tests fewer because they are slower and harder to diagnose.
 
-For the current project phase, Levels 0 and 1 are the default; Level 2 is selective. Levels 3 and 4 are deferred.
+For the current project phase, Levels 0 and 1 are the default for domain changes; Level 2 is selective. Level 3 applies to the desktop adapter; persistence integration and Level 4 remain deferred.
 
 ## When tests add value
 
@@ -144,7 +146,7 @@ For a bug fix, add a reproducing regression test before the correction when prac
   - `CHECKER`: a test or static check encodes the wrong rule;
   - `HARNESS`: test discovery, setup, environment, or execution is faulty.
 
-For a failed check, also follow `agentic-harness/harness/verification/fail.md`. Do not mark a product spec `Implemented` without the required actual gate and acceptance-criterion evidence.
+- For a failed check, also follow `agentic-harness/harness/verification/fail.md`. Do not mark a product spec `Implemented` without the required actual gate and acceptance-criterion evidence.
 - Document intentional checker exceptions rather than distorting production code to satisfy a false positive.
 - Do not claim that behavior works without reporting the command that verified it.
 
