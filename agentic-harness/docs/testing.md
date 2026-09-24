@@ -1,8 +1,8 @@
 # Flow Management Testing
 
-This document defines the project's testing responsibilities, test levels, workflow, and correction rules. It is the source of truth for deciding whether tests add value and for designing, writing, running, or reviewing tests.
+**Zuständigkeit:** Project-specific testing responsibilities, test levels, workflow, and correction rules. The completion gate is defined in `agentic-harness/harness/verification/gate.md`; executable check commands belong in `agentic-harness/harness/project.md`.
 
-Detailed feature behavior belongs in production code and tests, not in this document.
+Detailed feature behavior belongs in agreed requirements, production code and tests, not in this document. Existing pytest tests cover periods, sessions and work days; `tests/test_break_period.py` is currently empty.
 
 ## Responsibilities
 
@@ -143,6 +143,8 @@ For a bug fix, add a reproducing regression test before the correction when prac
   - `CODE`: production code violates a valid requirement;
   - `CHECKER`: a test or static check encodes the wrong rule;
   - `HARNESS`: test discovery, setup, environment, or execution is faulty.
+
+For a failed check, also follow `agentic-harness/harness/verification/fail.md`. Do not mark a product spec `Implemented` without the required actual gate and acceptance-criterion evidence.
 - Document intentional checker exceptions rather than distorting production code to satisfy a false positive.
 - Do not claim that behavior works without reporting the command that verified it.
 
