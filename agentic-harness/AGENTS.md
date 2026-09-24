@@ -1,14 +1,17 @@
-# Agentic Harness – Projekteinstieg
+# Agentic Harness – Einstieg
 
-> **Zuständigkeit:** Einstieg in den Harness dieses Projekts. Die Root-`AGENTS.md` verweist hierher; bestehende Projektanweisungen bleiben zusätzlich gültig.
+**Zuständigkeit:** Ladeweg für dieses Projekt. Herkunft und Änderungen: `agentic-harness/harness/adoption-log.md`.
 
-> **Herkunft:** Vorlage `3c936a1`: Einstieg; `b80b873`: projektbezogene Lesehinweise in Schritt 3; `2bfac53`: Herkunftshinweis. Danach ergänzt: gezielter Einstieg in den lokalen Harness-Lernstand. Vergleich: `agentic-harness/harness/adoption-log.md`.
+Bei Projektarbeit lies `agentic-harness/harness/core.md` und `agentic-harness/harness/project.md`. Lade danach nur die für die Aufgabe nötigen Dateien:
 
-1. Lies `agentic-harness/harness/core.md` für den Ablauf und `agentic-harness/harness/project.md` für bestätigte Projektgrenzen.
-2. Solange das Projektprofil `Pending Project Init` enthält, führe vor der ersten Produktimplementierung `agentic-harness/harness/init.md` durch.
-3. Lade bei Bedarf die passende Projekt-Doku unter `agentic-harness/docs/`, Ideas-/Spec-Konventionen unter `agentic-harness/ideas/` und `agentic-harness/specs/` sowie die betroffenen Verification-Dateien unter `agentic-harness/harness/verification/`. Vor Architekturentscheidungen oder Struktur-Refactorings `agentic-harness/docs/architecture.md` lesen; vor Testplanung oder Teständerungen `agentic-harness/docs/testing.md`. Bei Clean-Code-Erklärungen, Code-Reviews und verhaltensgleichen Refactorings zusätzlich den globalen Skill `clean-code-coach` laden und die Heuristiken in `agentic-harness/docs/code.md` anwenden. Für eng begrenzte, fachfremde Fragen keine Detaildoku auf Vorrat laden.
-4. `agentic-harness/` ist der gebündelte Harness. Anwendungscode und ausführbare Produkttests bleiben in den Projektordnern `src/` und `tests/` beziehungsweise ihrer bestehenden Struktur.
+| Anlass | Zusätzlicher Kontext |
+| --- | --- |
+| `Pending Project Init` | `agentic-harness/harness/init.md` |
+| Struktur, Zuständigkeiten, Stack | `agentic-harness/docs/architecture.md` |
+| Codeänderung, Refactor | `agentic-harness/docs/code.md`; für Clean-Code-Coaching den globalen Skill `clean-code-coach`, **falls verfügbar** |
+| Tests planen, ändern oder ausführen | `agentic-harness/docs/testing.md` |
+| Neues/geändertes Verhalten | `agentic-harness/specs/README.md` und betroffene Spec |
+| Abschluss | `agentic-harness/harness/verification/gate.md` |
+| Harness-Test/-Verbesserung | lokale `learning-state.md` |
 
-Nicht alle Dateien auf Vorrat laden. Bei Widersprüchen zwischen bestehenden Projektanweisungen, Auftrag und Harness vor riskanten Änderungen die Zuständigkeit klären; der Harness hebt Projektregeln nicht stillschweigend auf.
-
-Wenn der Auftrag **den Harness-Test oder seine Verbesserung** betrifft, lies zusätzlich die lokale `learning-state.md`. Sie hält Beobachtungen und offene Hypothesen fest, keine global gültigen Projektregeln. Die eigenständige Vorlage `../agentic-harness-v3/` bleibt ohne ausdrücklichen Auftrag unverändert.
+Fehlt ein angegebener Skill, benenne die Lücke; die geltenden Konventionen in `agentic-harness/docs/code.md` bleiben anwendbar. Bestehender Produktcode liegt außerhalb von `agentic-harness/`. Die eigenständige Vorlage `../agentic-harness-v3/` nur auf ausdrücklichen Auftrag ändern.

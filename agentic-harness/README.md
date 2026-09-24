@@ -1,5 +1,7 @@
 # Agentic Harness – gebündelte Projektregeln
 
+**Herkunft:** Vorlage `3c936a1`; Ladehinweise für Strukturaufträge angepasst. Details: `agentic-harness/harness/adoption-log.md`.
+
 Dieser Ordner enthält den zusammenhängenden, kopierbaren Harness: Agenteneinstieg, Arbeitsablauf, Project Init, Projektprofil, Verification, Vorlagen, Projektdokumentation sowie Ideas- und Specs-Konventionen. Der Installer kopiert den Ordner als Einheit und ergänzt einen markierten Verweis in der Root-`AGENTS.md`.
 
 | Pfad | Zuständigkeit |
@@ -16,9 +18,9 @@ Dieser Ordner enthält den zusammenhängenden, kopierbaren Harness: Agenteneinst
 ## Abhängigkeiten und Ladefolge
 
 - Jede Aufgabe: Root-`AGENTS.md` → `agentic-harness/AGENTS.md` → `agentic-harness/harness/core.md` und Projektprofil.
-- Neues Projekt mit `Pending Project Init`: `harness/init.md` → bestätigte Projektfakten in `harness/project.md` → relevante Doku und tatsächlicher Prüf-Einstieg.
+- `Pending Project Init`: `harness/init.md` → Projektprofil und passende Doku. Bei späteren Strukturaufträgen lädt `core.md` die Architektur auch ohne Init-Status.
 - Offene größere Idee: `ideas/README.md` → `harness/templates/idea.md` → konkrete Idea.
 - Beauftragtes Nutzerverhalten: `specs/README.md` → `harness/templates/spec.md` → konkrete Spec.
-- Abschluss: `harness/verification/gate.md` lädt Requirements- und Implementation-Prüfung; bei Fehlschlag gilt `fail.md`.
+- Abschluss: `harness/verification/gate.md` → Requirements- und Implementation-Prüfung; bei Fehlschlag `fail.md`. Strukturaufträge erfordern Soll-/Ist-Dateibaum und installierbare Imports/Tests.
 
 Der Installer legt weder Produktfakten noch Tests oder ein grünes Quality Gate an. Anwendungscode und ausführbare Produkttests verbleiben außerhalb dieses Ordners. Siehe `harness/core.md` für das knappe Markdown-Format und `docs/README.md` für thematisch getrennte Projektdokumentation.

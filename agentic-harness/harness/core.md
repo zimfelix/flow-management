@@ -1,19 +1,11 @@
-# Core – Arbeitsablauf von Auftrag bis Übergabe
+# Core – Auftrag bis Übergabe
 
-> **Zuständigkeit:** Ein gemeinsamer Arbeitsablauf; keine Produktfakten, Testbefehle oder zweite Kopie des Gates.
+**Zuständigkeit:** Ablauf, nicht Projektfakten, Testbefehle oder eine zweite Gate-Regel. Herkunft: `agentic-harness/harness/adoption-log.md`.
 
-> **Herkunft:** Schritte 1–5 und die ersten vier Regeln unter „Markdown-Dateien pflegen“ wurden aus dem Quellstand `3c936a1` unverändert in `b80b873` übernommen. Neu in diesem Project-Init-Schritt: dieser Hinweis und die letzte Regel zur Markdown-Provenienz. Vergleich: `agentic-harness/harness/adoption-log.md`.
+1. Lies `agentic-harness/harness/project.md`. Steht dort `Pending Project Init`, arbeite zuerst nach `agentic-harness/harness/init.md`.
+2. Kläre beauftragtes Ziel und Umfang. Offene größere Vorhaben können als Idea geklärt werden; **bestätigtes und beauftragtes** neues/geändertes Nutzerverhalten braucht eine Spec unter `agentic-harness/specs/`. Ein verhaltensgleicher Refactor oder reine Dokuänderung braucht nicht automatisch eine Produktspec.
+3. Lade die betroffene Doku nach `agentic-harness/AGENTS.md`. Bei Strukturaufträgen konkretisiere den vereinbarten Soll-Dateibaum, Imports, Paketinstallation und Testlayout **vor** dem Umbau; verkleinere den Auftrag nicht stillschweigend auf den leichtesten Teil. Kläre Berechtigungen und riskante Schreibaktionen vor Ausführung.
+4. Setze die kleinste Änderung um, die den **ganzen vereinbarten Umfang** erfüllt. Gleiche bei neuem Umfang Projektgrenzen und betroffene Specs erneut ab.
+5. Prüfe und berichte nach `agentic-harness/harness/verification/gate.md`. Bei Fehlschlag gilt `agentic-harness/harness/verification/fail.md`. `Implemented` nur mit Nachweis sämtlicher betroffener AK und bestandenem erforderlichem Gate; sonst `Modified` und Lücke benennen. Bei Änderungen ohne Produktspec den beauftragten Umfang und die betroffenen Verweise/Diffs prüfen, kein Produkt-Gate behaupten.
 
-1. Ordne die Aufgabe und das betroffene Projekt ein. Lies `agentic-harness/harness/project.md`; solange dort `Pending Project Init` steht, nutze vor der ersten Produktimplementierung `agentic-harness/harness/init.md`. Erfinde keine Projektfakten.
-2. Kläre Ziel und Umfang. Ein größeres, offenes Vorhaben kann zuerst als Idea unter `agentic-harness/ideas/` geklärt werden; erst Bestätigung **und** Umsetzungsauftrag führen zu Specs. Für beauftragtes neues oder geändertes Nutzerverhalten erstelle beziehungsweise aktualisiere eine Spec unter `agentic-harness/specs/`. Ein verhaltensgleicher Refactor oder eine reine Dokuänderung braucht nicht automatisch eine neue Produktspec.
-3. Lies nur die relevanten, bereits geltenden Dateien aus `agentic-harness/docs/`. Kläre Berechtigungen, echte Daten und irreversible Aktionen vor ihrer Ausführung. Setze die kleinste passende Änderung um; bei neuem Umfang prüfe betroffene Specs und Projektgrenzen erneut.
-4. Prüfe Änderungen nach `agentic-harness/harness/verification/gate.md` gegen Auftrag und tatsächliches Verhalten. Bei Fehlern gilt `agentic-harness/harness/verification/fail.md`. Für reine Prozess-/Dokumentationsänderungen ohne Produktspec prüfe insbesondere betroffene Verweise und Widersprüche; behaupte dabei kein erfolgreiches Produkt-Gate.
-5. Melde Ergebnis, tatsächlich ausgeführte Prüfungen und offene Punkte. Setze eine Produktspec nur dann auf `Implemented`, wenn **alle** betroffenen Akzeptanzkriterien belegt sind und das erforderliche Gate tatsächlich bestanden wurde; andernfalls bleibt sie `Modified` und die Arbeit wird gegebenenfalls als blockiert berichtet.
-
-## Markdown-Dateien pflegen
-
-- Ein sprechender Titel und ein kurzer Satz zur **Zuständigkeit** genügen als Einstieg. Status nur für offene Platzhalter oder dort, wo ihn das Artefaktformat verlangt (Ideas, Specs); Vorlagen behalten ihr eigenes Format.
-- Schreibe konkrete, handlungsrelevante Regeln oder bestätigte Fakten in kurzen Absätzen und Listen: **wann** gilt etwas, **was** ist zu tun und, falls nötig, **woran** wird es geprüft? Unbekanntes ausdrücklich offen lassen.
-- Eine Aussage hat einen zuständigen Ort: Arbeitsablauf im Harness, Projektgrenzen in `agentic-harness/harness/project.md`, thematische Konventionen in `agentic-harness/docs/`, beauftragtes Verhalten in `agentic-harness/specs/`. Anderswo verlinken statt wiederholen.
-- Keine starre Zeilen- oder Wortgrenze: Kürze Inhalte ohne Entscheidungswert. Trenne erst bei einem eigenständigen, wiederkehrenden Thema in eine neue Datei und verlinke sie am passenden Einstieg. Entferne Platzhalter-Status beim Befüllen.
-- In diesem Harness-Lernprojekt bei künftigen Markdown-Änderungen einen kurzen Provenienz-Hinweis in der bearbeiteten Datei und die Übersicht `agentic-harness/harness/adoption-log.md` pflegen. Unbearbeitete Markdown-Dateien nicht allein zur Markierung ändern; Details bleiben über Git-Diffs nachprüfbar.
+**Markdown-Pflege:** Eine Aussage hat einen Ort: Ablauf hier, Projektgrenzen/Befehle im Projektprofil, Architektur/Code/Tests in `docs/`, Soll-Verhalten in Specs. Bestätigtes von offenem trennen; Verweise statt Kopien. In diesem Harness-Test für geänderte Markdown-Dateien eine **kurze** Herkunftsreferenz und den Vergleich im `agentic-harness/harness/adoption-log.md` pflegen. Keine starre Zeilenbegrenzung, aber keine Historie in Pflichtkontext kopieren.

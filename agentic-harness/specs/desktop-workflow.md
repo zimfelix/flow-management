@@ -2,7 +2,7 @@
 
 > **Zuständigkeit:** Erster beauftragter, lokal bedienbarer Arbeitsablauf für Felix.
 
-> **Herkunft:** Neu im Project-Init-Schritt aus Felix' Auftrag erstellt, nicht Teil der Vorlage `3c936a1` und nicht in `b80b873` enthalten. Format nach der übernommenen Spec-Vorlage; Übersicht: `agentic-harness/harness/adoption-log.md`.
+> **Herkunft:** Produktspec aus Felix' Auftrag seit `2bfac53`, nicht aus der Vorlage `3c936a1`. Dieser Schritt aktualisiert nur Nachweise für die neue Struktur; Soll-Verhalten unverändert. Siehe `agentic-harness/harness/adoption-log.md`.
 
 - **State:** Modified
 - **Ziel und Nutzer:** Felix möchte seine Arbeitszeit in einer Desktop-Anwendung mit Buttons erfassen, die auch bei nicht fokussiertem Fenster weiterläuft.
@@ -22,4 +22,5 @@
 - **AK1:** `tests/test_desktop_ui.py::test_window_starts_without_session_and_only_allows_start` bestanden; interaktive Sichtprüfung auf einem Desktop offen.
 - **AK2–AK4:** `tests/test_desktop_ui.py::test_buttons_record_work_break_resume_and_end_with_visible_times` bestanden; `test_end_during_break_keeps_entry_and_allows_new_start` bestanden.
 - **AK5:** `tests/test_desktop_ui.py::test_invalid_time_keeps_work_running_and_displays_domain_error` bestanden; deaktivierte Buttons in den übrigen Fällen geprüft.
-- **Gate:** `QT_QPA_PLATFORM=offscreen .venv/bin/python -m pytest -q` → 23 bestanden. Ein temporärer Fehlertest lieferte erwartungsgemäß Exit 1. Interaktive Sichtprüfung und Verhalten bei nicht fokussiertem Fenster noch nicht belegt; deshalb `Modified`.
+- **Ergänzend:** `tests/test_flow_manager.py` prüft denselben Ablauf ohne Qt, einschließlich abgewiesener Änderungen.
+- **Gate:** `.venv/bin/ruff check .`, `.venv/bin/ruff format --check .` → bestanden; `QT_QPA_PLATFORM=offscreen .venv/bin/python -m pytest -q` → 27 bestanden. Negative Checks für alle drei Befehle schlugen erwartungsgemäß fehl. Interaktive Sichtprüfung und Verhalten bei nicht fokussiertem Fenster noch nicht belegt; deshalb `Modified`.

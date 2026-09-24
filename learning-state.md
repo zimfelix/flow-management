@@ -2,7 +2,7 @@
 
 **Zuständigkeit:** Lokaler Zwischenspeicher für Erkenntnisse aus diesem Harness-Test. Kein Produkt-Backlog und keine Änderung der globalen Agentenregeln oder der Vorlage in `../agentic-harness-v3/`. Die verbindlichen Anpassungen der Testkopie stehen in `agentic-harness/harness/init.md` und den zuständigen Projektdokumenten; Herkunft unter `agentic-harness/harness/adoption-log.md`.
 
-> **Herkunft:** Neu in diesem Schritt nach Commit `2bfac53` auf Branch `test/harness-v3`, aus Felix' Rückmeldung zur ersten Integration und zum Desktop-Prototyp. Beobachtungen sind von noch zu prüfenden Verbesserungen getrennt.
+> **Herkunft:** Angelegt in `2ba1579`; Änderungen an diesem Lernstand: `agentic-harness/harness/adoption-log.md`. Bestätigtes und offene Hypothesen bleiben getrennt.
 
 ## Ziel des Versuchs
 
@@ -31,9 +31,22 @@ Professionell bedeutet hier überprüfbare Standards und saubere Verantwortungst
 
 Dokumentationsregel: universeller Entscheidungsablauf in `harness/init.md`, bestätigte Projektrichtung in `harness/project.md`, Ist/Soll/Abstand in `docs/architecture.md`, geltende gegenüber vorgeschlagenen Checks in `docs/code.md` und `docs/testing.md`, ausführliche Lernerkenntnisse hier. Keine Gesprächsprotokolle in den Core kopieren. Herkunft der Markdown-Änderungen weiter in `harness/adoption-log.md` nachführen.
 
+## Bestätigter zweiter Befund: Strukturentscheidung ohne Strukturabgleich
+
+Felix erlaubte zunächst eine vollständige Umstrukturierung und verlangte eine Struktur für spätere Features; ein `src/`-Layout war dabei noch **nicht ausdrücklich vorgegeben**. Nach der Umsetzung bestätigte er ein installierbares Python-Paket unter `src/` mit Domänen-, Anwendungs- und Desktop-Modulen sowie gegliederten Tests als das gemeinte Ziel. Der Agent behielt `backend/`, `frontend/` und eine flache Testsuite bei, ohne den konkreten Ziel-Dateibaum vorher abzugleichen, obwohl ein größerer Refactor erlaubt war. `agentic-harness/harness/project.md` wurde vor der Umsetzung für diesen verkleinerten Umfang als abgeschlossen behandelt. Ursache ist **nicht**, dass `src/` universell professioneller wäre, sondern dass der vereinbarte **gewünschte Strukturumfang nicht als prüfbares Ergebnis gegen den tatsächlichen Dateibaum abgeglichen** wurde. „Kleinste passende Änderung“ darf einen beauftragten Strukturwechsel nicht stillschweigend auf einen internen Klassen-Refactor reduzieren.
+
+**In der Flow-Management-Testkopie präzisiert:** `harness/init.md` fordert vor einem Strukturumbau Soll-Dateibaum, Ist-Abgleich, Paketinstallation und Testlayout; `harness/core.md` bindet den beauftragten Umfang, `harness/verification/` prüft beim Abschluss echte Dateien, Imports und Testentdeckung. `docs/architecture.md` enthält den gewünschten `src/flow_management/`-Baum, `docs/code.md` Packaging-Konventionen und `docs/testing.md` das Testlayout. `src/` ist eine **bestätigte Entscheidung dieses Projekts**, keine Pflicht für jedes Projekt. Der Produktcode ist **noch nicht migriert**; die praktische Wirksamkeit der präzisierten Verification bleibt bis zu diesem Refactor offen.
+
+## Dritter Befund: Informationsdichte und Ladegrenzen
+
+Wenig Markdown-Zeilen bedeuten nicht wenig Kontext: In der Testkopie hatten AGENTS, Core, Init und Projektprofil zusammen über 11.000 Zeichen, einzelne Regeln bis zu 820 Zeichen pro Zeile. Das Profil wiederholte Moduldetails/Tests und Chronik; knappe Herkunftstexte in ständig geladenen Dateien verdrängten handlungsrelevante Entscheidungen. Die Eingangsdateien verlinkten zwar thematisch, aber `init.md` wurde nur über `Pending Project Init` geladen; nach Entfernen dieses Status fehlte für ausdrücklich beauftragte Strukturumbauten ein **unabhängiger Abschlussabgleich**.
+
+**In der Testkopie umgesetzt:** Einstiegsdateien auf Aufgabe → relevante Doku begrenzt; Projektprofil auf Grenzen, offene Strukturabweichung und Befehle, Architecture auf Ist/Soll-Baum und Technologien, Code auf Packaging/Code-Konventionen, Testing auf Layout/Tests reduziert. Herkunft als kurzer Verweis ins optionale `harness/adoption-log.md`; der lokale Lernstand bleibt nur für Harness-Aufgaben. Die Verification wurde gezielt um Struktur-Nachweis ergänzt, **nicht** bereits im src-Migrationsdurchlauf erprobt. Aussagekraft anhand eines echten Struktur-Refactors prüfen, statt Wortzahlen als Qualitätsziel einzuführen.
+
 ## Offen für den nächsten Durchlauf
 
 - **Offen (Produktentscheidung):** Was bedeutet „im Hintergrund laufen“ für die bedienungsfertige Zielversion konkret – minimiertes Fenster, Tray, Systemstart, Aktivitätserkennung? Wie wichtig ist verlustfreie Speicherung bereits im ersten nutzbaren Meilenstein? Welche Zielplattformen außer der aktuellen macOS-Umgebung?
-- **Offen (Architekturabgleich):** App-weite Koordination von Tagen/Sessions, Uhr und Datenlebensdauer vom Widget trennen, ohne `FlowManager` allein wegen seines Namens zur Pflichtabstraktion zu machen. Über-Mitternacht-Regel und Zeitzonen vor entsprechender Persistenz entscheiden.
-- **Offen (Engineering):** Python-Version, Projektmetadaten und Abhängigkeitsstrategie wählen; Ruff/Typprüfung anhand des bestehenden Codes evaluieren und erst nach erfolgreichem Einsatz in das echte Gate aufnehmen. Ein automatisiertes CI erst einrichten, wenn der lokale Check reproduzierbar ist.
+- **Erprobt (Architekturabgleich):** Der nächste beauftragte Meilenstein ist flüchtig. Nach abgeschlossener Profilklärung koordiniert `FlowManager` Uhr, Tage und Session ohne Qt; das Widget sendet Aktionen und stellt dar. Domänen-, Manager- und Qt-Tests sowie Ruff-Lint/-Formatcheck laufen. Das belegt die konkrete Trennung, nicht bereits die spätere Persistenzarchitektur oder visuelle Bedienbarkeit.
+- **Offen (späterer Architekturabgleich):** Datenlebensdauer über Neustarts, Über-Mitternacht-Regel und Zeitzonen vor Speicherung entscheiden; prüfen, ob die Trennung im nächsten Feature Bestand hat.
+- **Offen (Engineering):** Python-Mindestversion, installierbares Paket, Abhängigkeitsstrategie und Typprüfung wählen; Ruff-Lint/-Format und pytest sind inzwischen aktiv, ein automatisiertes CI noch nicht. CI erst auf reproduzierbarer lokaler Prüfung aufbauen.
 - **Offen (Harness-Test):** Beim nächsten Feature-/Refactor-Durchlauf prüfen, ob Init und Projektprofil nun eine klare Ziel-/Ist-/Lückenentscheidung auslösen und ob die Docs kurz und handlungsrelevant bleiben. Danach im nächsten Testprojekt auf Übertragbarkeit prüfen, bevor Änderungen in die separate Vorlage übernommen werden.

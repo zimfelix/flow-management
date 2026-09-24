@@ -58,4 +58,38 @@ Auslöser: Der erste Durchlauf dokumentierte den Anfänger-Ist-Zustand und ergä
 
 **Bei der Präzisierung unverändert:** übrige Markdown-Dateien einschließlich `agentic-harness/harness/core.md`, `AGENTS.md`, `README.md` und `agentic-harness/specs/desktop-workflow.md`; keine Änderung an Produktcode oder der separaten Vorlage `../agentic-harness-v3/`.
 
-**Prüfung:** Ein Checkout der Vorlage bei `3c936a1f7e6b663f2751b725853d19f142bf01c5` ermöglicht den Vergleich mit `git show b80b873:agentic-harness/<datei>`. Spätere Etappen anhand `git diff b80b873..2bfac53 -- <datei>` und `git diff 2bfac53 -- <datei>` vergleichen (für neue Dateien `git status --short`). Ein Dateivergleich ist präziser als die Kurzübersicht hier.
+## Strukturierter flüchtiger Desktop-Meilenstein nach `c541b51`
+
+| Markdown-Datei | Änderung gegenüber `c541b51` |
+| --- | --- |
+| `agentic-harness/harness/project.md` | Profil für diesen Meilenstein vor Produktcode vervollständigt, `Pending Project Init` entfernt; geprüfte Ruff-/pytest-Gates ergänzt. |
+| `agentic-harness/docs/architecture.md` | Umgesetzte UI-/Manager-/Domänengrenzen statt vorgeschlagenem ersten Refactor dokumentiert. |
+| `agentic-harness/docs/code.md` | Ruff als aktiven Qualitätscheck von späteren Kandidaten abgegrenzt. |
+| `agentic-harness/docs/testing.md` | Qt-freie Manager-Tests und aktiven Ruff-Check ergänzt. |
+| `agentic-harness/specs/desktop-workflow.md` | Nachweise aktualisiert, Verhalten/Status `Modified` unverändert. |
+| `README.md` | Tatsächliche Projektstruktur und Start-/Prüfbefehle ergänzt. |
+| `agentic-harness/harness/adoption-log.md` | Diese Etappe erfasst. |
+| `learning-state.md` | Offenen Architekturabgleich durch erprobte Trennung und spätere offene Entscheidungen ersetzt. |
+
+**Weitere Markdown-Dateien bleiben in diesem Schritt unverändert**, einschließlich `agentic-harness/AGENTS.md` und `agentic-harness/harness/{core,init}.md`. Die eigenständige Vorlage `../agentic-harness-v3/` blieb unverändert. Produktcode/Tests/Tooling: `backend/flow_manager.py`, `frontend/desktop_ui.py`, `tests/test_flow_manager.py`, `pyproject.toml`, `requirements-dev.txt` und kleine Formatierungen; keine DB-/Web-/Analyse-Platzhalter.
+
+## Folgebefund zum gewünschten Paketlayout (nach dem flüchtigen Meilenstein)
+
+Nur `learning-state.md` und dieses Änderungsprotokoll wurden für diesen Befund ergänzt: Felix bestätigte das installierbare `src/`-Paket mit getrennten Domänen-/Anwendungs-/Desktop-Modulen und gegliederten Tests als gewünschtes Ziel. Der bisherige Harness verlangte zwar einen Ist-zu-Ziel-Abgleich, aber weder einen konkreten Soll-Dateibaum noch den Abgleich des tatsächlichen Dateibaums vor Abschluss. Die Präzisierung der Harness-Regel und die Code-Migration sind **noch nicht umgesetzt**; die separate Vorlage `../agentic-harness-v3/` bleibt unberührt.
+
+## Verdichtung und Ladegrenzen (dieser Schritt)
+
+Die ausstehende `src/`-Migration wurde **nicht** umgesetzt. Diese Markdown-Dateien wurden geändert:
+
+| Datei | Zweck |
+| --- | --- |
+| `agentic-harness/AGENTS.md`, `agentic-harness/README.md`, `agentic-harness/harness/core.md`, `agentic-harness/harness/init.md` | Kürzere Einstiegskette, expliziter Strukturauftrag auch unabhängig vom Init-Status. |
+| `agentic-harness/harness/project.md` | Kurzprofil mit klar markierter Ist-/Soll-Strukturlücke und aktuellen Befehlen. |
+| `agentic-harness/docs/README.md`, `architecture.md`, `code.md`, `testing.md` | Themenabhängige Lesewege; Soll-Dateibaum und klare Doku-Zuständigkeiten. |
+| `agentic-harness/harness/verification/requirements.md`, `implementation.md` | Beauftragten Strukturumfang und tatsächlich installierbares Paket beim Abschluss prüfen; noch nicht praktisch erprobt. |
+| `learning-state.md`, `agentic-harness/harness/adoption-log.md` | Informationsdichte-/Ladeproblem und diesen Änderungsschritt festhalten. |
+| `README.md` | V2-Branch als Experiment gekennzeichnet; ausstehende `src/`-Migration ausdrücklich genannt. |
+
+Andere Markdown-Dateien bleiben in diesem Schritt unverändert. Die Vorlage `../agentic-harness-v3/` bleibt unberührt.
+
+**Prüfung:** Ein Checkout der Vorlage bei `3c936a1f7e6b663f2751b725853d19f142bf01c5` ermöglicht den Vergleich mit `git show b80b873:agentic-harness/<datei>`. Spätere Etappen anhand `git diff b80b873..2bfac53 -- <datei>`, `git diff 2bfac53..c541b51 -- <datei>` und `git diff c541b51 -- <datei>` vergleichen (für neue Dateien `git status --short`). Ein Dateivergleich ist präziser als die Kurzübersicht hier.

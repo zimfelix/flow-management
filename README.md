@@ -1,6 +1,8 @@
-# Flow Management
+# Flow Management – V2-Experiment
 
-> **Herkunft:** Diese Produkt-README gehört zu Flow Management, nicht zur kopierten Harness-Vorlage `3c936a1`; sie bestand bereits vor der ersten Integration `b80b873`. Neu im Project-Init-Schritt: Desktop-first, späteres SQL-/Analyseziel und Startbefehle. Genaue Änderungen: `git diff b80b873 -- README.md`; Übersicht: `agentic-harness/harness/adoption-log.md`.
+> **Herkunft:** Projekt-README vor `b80b873`, nicht aus Vorlage `3c936a1`. `2bfac53` ergänzte Desktop-first und Startbefehle; dieser Schritt präzisiert Struktur und Qualitätsprüfungen. Details: `agentic-harness/harness/adoption-log.md` und Git-Diffs.
+
+This branch develops a separate V2 in the same repository. `main` remains the original learning project. The confirmed `src/flow_management/` migration is documented but **not yet implemented**; see `agentic-harness/docs/architecture.md`.
 
 - Build a local application for tracking work time.
 - Organize time as work days, sessions, and breaks.
@@ -16,4 +18,15 @@
 
 ## Current local prototype
 
-Create a virtual environment and install dependencies: `python3 -m venv .venv`, `.venv/bin/python -m pip install -r requirements.txt -r requirements-dev.txt`. Launch with `.venv/bin/python main.py`; check with `QT_QPA_PLATFORM=offscreen .venv/bin/python -m pytest -q` (offscreen is for tests, not interactive use). The desktop prototype shows recorded times only until the app exits. See `agentic-harness/harness/project.md` for the verified gate and `agentic-harness/specs/desktop-workflow.md` for the first commissioned workflow.
+Create a virtual environment and install dependencies: `python3 -m venv .venv`, `.venv/bin/python -m pip install -r requirements.txt -r requirements-dev.txt`. Launch with `.venv/bin/python main.py`. From the repo root, run `.venv/bin/ruff check .`, `.venv/bin/ruff format --check .` and `QT_QPA_PLATFORM=offscreen .venv/bin/python -m pytest -q` (offscreen is for tests, not interactive use). The desktop version retains recorded times only until the app exits.
+
+## Structure and later extensions
+
+```text
+main.py → frontend/desktop_ui.py (PySide6 buttons and display)
+                     → backend/flow_manager.py (in-memory coordination and clock)
+                         → backend/work_day.py → work_session.py → time_period.py
+tests/ → domain, manager and desktop interaction
+```
+
+No unused database, web or analysis packages are pre-created. SQL persistence and later browser/data-science analysis will use separate boundaries when their behavior is decided; see `agentic-harness/docs/architecture.md`. `agentic-harness/harness/project.md` records the current verification gate and `agentic-harness/specs/desktop-workflow.md` the commissioned workflow.
