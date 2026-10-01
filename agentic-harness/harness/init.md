@@ -1,0 +1,11 @@
+# Project Init – Ziel und Bestand ausrichten
+
+**Zuständigkeit:** Projektentscheidungen vor erster/weiterer Umsetzung klären. Herkunft: `agentic-harness/harness/adoption-log.md`. Der Installer trifft keine Produktentscheidungen.
+
+1. **Ziel:** Nutzer, erster Ablauf, Meilenstein und Nicht-Ziele klären. Fragen zu Daten, Betrieb, Integrationen und Freigaben bündeln; aus freien Antworten belegbare Fakten ableiten. Nur bei blockierenden Lücken nachfragen. Unbekanntes als offen/später relevant kennzeichnen.
+2. **Bestand und Zielbild:** Bei vorhandenem Code Einstieg, Modulgrenzen, Datenfluss, Tests und ausführbare Befehle prüfen. Einen begründeten Soll-Zustand für den **nächsten** Meilenstein vorschlagen: Zuständigkeiten, Technologien und Quality Checks. Bei beauftragtem Strukturwechsel zusätzlich einen konkreten Soll-Dateibaum mit Paket-/Import-, Installations- und Testlayout gegen den Ist-Baum stellen; geplante Moves und Beibehaltungen nennen. `src/` ist keine Universalpflicht.
+3. **Entscheiden:** Unterschiede und Risiken mit Pfaden benennen. Werkzeugkandidaten mit Nutzen/Kosten einordnen; vorhanden, empfohlen, entschieden und später relevant unterscheiden. Umfang und ersten Refactor bestätigen lassen, statt ihn stillschweigend zu verkleinern.
+4. **Verorten:** Bestätigte Grenzen/Befehle in `agentic-harness/harness/project.md`, Bausteine/Technologien und Soll-/Ist-Struktur in `agentic-harness/docs/architecture.md`, Code-/Packaging-Regeln in `agentic-harness/docs/code.md`, Testlayout in `agentic-harness/docs/testing.md`. Produkt-`README.md` nur ergänzen. `Pending Project Init` erst entfernen, wenn Ziel, Lücke und erster Schritt verantwortbar geklärt sind; ein grünes Gate folgt nicht automatisch.
+5. **Prüfen:** Passende Checks tatsächlich einrichten und positive sowie absichtlich negative Fälle ausführen; Befehle und Geltungsbereich im Projektprofil festhalten. Keine leere Suite oder Tool-Kandidaten als erfolgreiches Gate ausgeben. Beauftragtes Verhalten nach `agentic-harness/harness/templates/spec.md` beschreiben; Ideas nur bei Klärungsbedarf. Keine riskante externe Schreibaktion ohne Freigabe.
+
+Bei diesem Testprojekt Markdown-Herkunft knapp referenzieren und den Vergleich in `agentic-harness/harness/adoption-log.md` pflegen; ausführliche Harness-Learnings nur in `learning-state.md`.

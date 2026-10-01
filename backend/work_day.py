@@ -5,7 +5,6 @@ from backend.work_session import WorkSession
 
 
 class WorkDay:
-
     def __init__(self, day: date) -> None:
         self.day = day
         self.work_sessions: list[WorkSession] = []
